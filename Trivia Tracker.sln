@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trivia Tracker", "Trivia Tracker.csproj", "{45963F6C-9D54-42C7-B999-18DF45C28710}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45963F6C-9D54-42C7-B999-18DF45C28710}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45963F6C-9D54-42C7-B999-18DF45C28710}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45963F6C-9D54-42C7-B999-18DF45C28710}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45963F6C-9D54-42C7-B999-18DF45C28710}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {69579E6E-4241-418C-BD2C-58F87371189D}
+	EndGlobalSection
+EndGlobal
