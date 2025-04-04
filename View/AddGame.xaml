@@ -1,0 +1,48 @@
+﻿<Window x:Class="Trivia_Tracker.ViewModel.AddGame"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Trivia_Tracker"
+        mc:Ignorable="d"
+        Title="Trivia Tracker" Height="450" Width="800" Background="#FFF2F2F2">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" MinHeight="25"/>
+            <RowDefinition Height="*" MinHeight="25"/>
+            <RowDefinition Height="*" MinHeight="25"/>
+            <RowDefinition Height="*" MinHeight="25"/>
+            <RowDefinition Height="*" MinHeight="25"/>
+            <RowDefinition Height="*" MinHeight="25"/>
+            <RowDefinition Height="*" MinHeight="25"/>
+            <RowDefinition Height="*" MinHeight="25"/>
+            <RowDefinition Height="*" MinHeight="25"/>
+            <RowDefinition Height="*" MinHeight="25"/>
+            <RowDefinition Height="*" MinHeight="25"/>
+            <RowDefinition Height="*" MinHeight="25"/>
+            <RowDefinition Height="*" MinHeight="25"/>
+            <RowDefinition Height="*" MinHeight="25"/>
+            <RowDefinition Height="*" MinHeight="25"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="13" Grid.Column="1" Margin="5,0,0,0">
+            <Button x:Name="btnNext" Margin="200,5,0,0" Click="ButtonNext_Click" Content="Next"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Margin="5,0,0,0">
+            <Label x:Name="gameIdLabel" Content="Game ID" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+        </StackPanel>
+        <TextBox x:Name="gameIdText" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="GameID" VerticalAlignment="Center" Width="120" IsEnabled="False"/>
+        <StackPanel Grid.Row="3" Margin="5,0,0,0">
+            <Label x:Name="gameDateLabel" Content="Game Date" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+        </StackPanel>
+        <DatePicker Grid.Row="3" Grid.Column="1" Margin="10,0,200,0"/>
+        <StackPanel Grid.Row="4" Margin="5,0,0,0">
+            <Label x:Name="playersLabel" Content="Players" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+        </StackPanel>
+        <ComboBox x:Name="playerCombo" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="4" VerticalAlignment="Center" Width="120" Text="Select Players" ScrollViewer.CanContentScroll="False"/>
+    </Grid>
+</Window>
