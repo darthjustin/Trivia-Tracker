@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Trivia_Tracker"
         mc:Ignorable="d"
-        Title="AddPlayer" Height="450" Width="800" Background="#FFF2F2F2">
+        Title="AddPlayer" Height="450" Width="800" Background="#FFF2F2F2"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         
     </Grid>
