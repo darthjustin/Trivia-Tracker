@@ -77,7 +77,7 @@ CREATE TABLE `responses` (
                             `question_id` int(10) NOT NULL,
                             `player_id`   int(10) NOT NULL,
                             `player_answer` varchar(50) DEFAULT NULL,
-                            `is_correct` tinyint(1),
+                            `is_correct` boolean DEFAULT FALSE,
                             `is_bonus_used` boolean DEFAULT FALSE,
                             PRIMARY KEY (`response_id`),
                             FOREIGN KEY (`question_id`) REFERENCES `questions` (`question_id`),
@@ -89,8 +89,8 @@ BEFORE INSERT ON responses
 FOR EACH ROW
 SET NEW.is_correct = 
     (SELECT CASE 
-        WHEN NEW.player_answer = q.correct_answer THEN 10
-        ELSE 0
+        WHEN NEW.player_answer = q.correct_answer THEN TRUE
+        ELSE FALSE
     END
     FROM questions q
     WHERE q.question_id = NEW.question_id);
@@ -106,10 +106,18 @@ INSERT INTO games VALUES(1,	'3/8/25', FALSE);
 -- test data for questions
 
 INSERT INTO questions VALUES(1,	1, 1, 'Movies', 'Movie Question 1', 'A', 'multiple');
+INSERT INTO questions VALUES(2,	1, 1, 'Movies', 'Movie Question 1', 'D', 'multiple');
+INSERT INTO questions VALUES(3,	1, 1, 'Movies', 'Movie Question 1', 'D', 'multiple');
+INSERT INTO questions VALUES(4,	1, 1, 'Movies', 'Movie Question 1', 'C', 'multiple');
+INSERT INTO questions VALUES(5,	1, 1, 'Movies', 'Movie Question 1', 'JFK', 'bonus');
 
 -- test data for responses
 
 INSERT INTO responses VALUES(1, 1, 1, 'A', 0, FALSE);
+INSERT INTO responses VALUES(2, 2, 1, 'A', 0, FALSE);
+INSERT INTO responses VALUES(3, 3, 1, 'D', 0, FALSE);
+INSERT INTO responses VALUES(4, 4, 1, 'A', 0, FALSE);
+INSERT INTO responses VALUES(5, 5, 1, 'JFK', 0, FALSE);
 -- First Level Divisions
 
 --INSERT INTO first_level_divisions(Division, Division_ID, Create_Date, Created_By, Last_Update, Last_Updated_By, COUNTRY_ID) VALUES('Alabama', 1, NOW(), 'script', NOW(), 'script', 1 );
