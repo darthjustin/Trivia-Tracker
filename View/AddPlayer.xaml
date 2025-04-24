@@ -5,9 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Trivia_Tracker"
         mc:Ignorable="d"
-        Title="AddPlayer" Height="450" Width="800" Background="#FFF2F2F2"
-        WindowStartupLocation="CenterScreen">
-    <Grid>
-        
+        Title="AddPlayer" Height="450" Width="800" Background="#FFF2F2F2">
+    <Grid UseLayoutRounding="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.125*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Content="Button" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" UseLayoutRounding="True"/>
+            <Button Content="Button" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" UseLayoutRounding="True"/>
+            <Button Content="Button" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" UseLayoutRounding="True"/>
+            <Button Content="Button" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" UseLayoutRounding="True"/>
+        </Grid>
+
     </Grid>
 </Window>

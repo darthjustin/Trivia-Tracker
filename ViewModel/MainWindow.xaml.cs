@@ -53,5 +53,15 @@ namespace Trivia_Tracker.ViewModel
 
             playerStatsWindow.Closed += (s, args) => this.Show();
         }
+
+        public void ButtonAddPlayer_Click(object sender, RoutedEventArgs e)
+        {
+            // Add Player Button Clicked
+        }
+
+        public void ButtonPlayerStats_Click(object sender, RoutedEventArgs e)
+        {
+            // Player Stats Button Clicked
+        }
     }
 }
