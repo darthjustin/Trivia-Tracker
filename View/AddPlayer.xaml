@@ -11,7 +11,7 @@
             <ColumnDefinition Width="0.125*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid>
+        <Grid Background="#FF4AC3AF">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -20,10 +20,23 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Button Content="Button" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" UseLayoutRounding="True"/>
-            <Button Content="Button" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" UseLayoutRounding="True"/>
-            <Button Content="Button" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" UseLayoutRounding="True"/>
-            <Button Content="Button" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" UseLayoutRounding="True"/>
+            <Button Content="Button" Grid.Row="1" VerticalAlignment="Center" UseLayoutRounding="True" HorizontalAlignment="Center" Height="72" Width="90">
+                <Button.Background>
+                    <ImageBrush Stretch="Uniform" ImageSource="/Assets/users-alt.png" Opacity="1">
+                        <ImageBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.25" ScaleY="0.25"/>
+                                <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                <RotateTransform CenterX="0.5" CenterY="0.5"/>
+                                <TranslateTransform X="-0.25"/>
+                            </TransformGroup>
+                        </ImageBrush.RelativeTransform>
+                    </ImageBrush>
+                </Button.Background>
+            </Button>
+            <Button Content="Button" Grid.Row="2" VerticalAlignment="Center" UseLayoutRounding="True" HorizontalAlignment="Center" Height="72" Width="90" Background="{x:Null}"/>
+            <Button Content="Button" Grid.Row="3" VerticalAlignment="Center" UseLayoutRounding="True" HorizontalAlignment="Center" Height="72" Width="90" Background="{x:Null}"/>
+            <Button Content="Button" Grid.Row="5" VerticalAlignment="Center" UseLayoutRounding="True" HorizontalAlignment="Center" Height="72" Width="90" Background="{x:Null}"/>
         </Grid>
 
     </Grid>
