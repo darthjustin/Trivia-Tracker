@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Trivia_Tracker.Model; 
 
 namespace Trivia_Tracker.ViewModel
 {
@@ -21,12 +23,15 @@ namespace Trivia_Tracker.ViewModel
     {
         public MainWindow()
         {
+            DatabaseHelper.GetConnection();
             InitializeComponent();
+
         }
 
         public void ButtonAddGame_Click(object sender, RoutedEventArgs e)
         {
             // Add Game Button Clicked
+
         }
 
         public void ButtonAddQuestion_Click(object sender, RoutedEventArgs e)
@@ -37,6 +42,17 @@ namespace Trivia_Tracker.ViewModel
         public void ButtonAddAnswer_Click(object sender, RoutedEventArgs e)
         {
             // Add Answer Button Clicked
+        }
+
+        public void ButtonAddPlayer_Click(object sender, RoutedEventArgs e)
+        {
+            // Add Game Button Clicked
+        }
+
+        public void ButtonPlayerStats_Click(object sender, RoutedEventArgs e)
+        {
+            // Add Game Button Clicked
+
         }
     }
 }
