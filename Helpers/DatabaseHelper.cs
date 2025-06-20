@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using MySqlConnector;
 
-namespace Trivia_Tracker.Model
+namespace Trivia_Tracker.Helpers
 {
     public class DatabaseHelper
     {
