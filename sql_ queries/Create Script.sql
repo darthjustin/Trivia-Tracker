@@ -62,6 +62,7 @@ CREATE TABLE `questions` (
                              `question_text` varchar(50) DEFAULT NULL,
                              `correct_answer` varchar(50) DEFAULT NULL,
                              `question_type` text CHECK (question_type IN ('multiple', 'fill', 'bonus', 'final')),
+                             `point_value` int(10) Default 5,
                              PRIMARY KEY (`question_id`),
                              CONSTRAINT questions_ibfk_1 FOREIGN KEY (`game_id`) REFERENCES `games` (`game_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8mb4;
@@ -90,7 +91,7 @@ FOR EACH ROW
 SET NEW.is_correct = 
     (SELECT CASE 
         WHEN NEW.player_answer = q.correct_answer THEN TRUE
-        ELSE FALSE
+        SELSE FALSE
     END
     FROM questions q
     WHERE q.question_id = NEW.question_id);
@@ -105,11 +106,11 @@ INSERT INTO games VALUES(1,	'3/8/25', FALSE);
 
 -- test data for questions
 
-INSERT INTO questions VALUES(1,	1, 1, 'Movies', 'Movie Question 1', 'A', 'multiple');
-INSERT INTO questions VALUES(2,	1, 1, 'Movies', 'Movie Question 1', 'D', 'multiple');
-INSERT INTO questions VALUES(3,	1, 1, 'Movies', 'Movie Question 1', 'D', 'multiple');
-INSERT INTO questions VALUES(4,	1, 1, 'Movies', 'Movie Question 1', 'C', 'multiple');
-INSERT INTO questions VALUES(5,	1, 1, 'Movies', 'Movie Question 1', 'JFK', 'bonus');
+INSERT INTO questions VALUES(1,	1, 1, 'Movies', 'Movie Question 1', 'A', 'multiple', 5);
+INSERT INTO questions VALUES(2,	1, 1, 'Movies', 'Movie Question 1', 'D', 'multiple', 5);
+INSERT INTO questions VALUES(3,	1, 1, 'Movies', 'Movie Question 1', 'D', 'multiple', 10);
+INSERT INTO questions VALUES(4,	1, 1, 'Movies', 'Movie Question 1', 'C', 'multiple', 10);
+INSERT INTO questions VALUES(5,	1, 1, 'Movies', 'Movie Question 1', 'JFK', 'bonus', 10);
 
 -- test data for responses
 
