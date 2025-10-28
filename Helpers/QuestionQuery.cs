@@ -35,7 +35,7 @@ namespace Trivia_Tracker.Helpers
                             Question question = new Question(
                                 questionID, gameID, roundNum, questionText, category,
                                 correctAnswer, questionType, pointValue);
-
+                            questionList.Add(question);
 
                         }
                     }
