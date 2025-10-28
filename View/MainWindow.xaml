@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Trivia_Tracker.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="#FFF2F2F2">
+        Title="MainWindow" Height="450" Width="800" Background="#FFF2F2F2"
+        WindowStartupLocation="CenterScreen">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" MinHeight="25"/>

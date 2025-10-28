@@ -52,14 +52,24 @@ namespace Trivia_Tracker.ViewModel
 
         }
 
-        public void ButtonAddQuestion_Click(object sender, RoutedEventArgs e)
+        public void ButtonAddPlayer_Click(object sender, RoutedEventArgs e)
         {
-            // Add Question Button Clicked
+            // Add Player Button Clicked
+            AddPlayer addPlayerWindow = new AddPlayer();
+            addPlayerWindow.Show();
+            this.Hide();
+
+            addPlayerWindow.Closed += (s, args) => this.Show();
         }
 
-        public void ButtonAddAnswer_Click(object sender, RoutedEventArgs e)
+        public void ButtonPlayerStats_Click(object sender, RoutedEventArgs e)
         {
-            // Add Answer Button Clicked
+            // Add Team Button Clicked
+            PlayerStats playerStatsWindow = new PlayerStats();
+            playerStatsWindow.Show();
+            this.Hide();
+
+            playerStatsWindow.Closed += (s, args) => this.Show();
         }
 
         public void ButtonAddPlayer_Click(object sender, RoutedEventArgs e)

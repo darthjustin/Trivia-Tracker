@@ -26,7 +26,9 @@ namespace Trivia_Tracker.ViewModel
 
         private void ButtonNext_Click(object sender, RoutedEventArgs e)
         {
-
+            AddQuestion addQuestionWindow = new AddQuestion();
+            addQuestionWindow.Show();
+            this.Hide();
         }
     }
 }
