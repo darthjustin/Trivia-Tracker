@@ -29,7 +29,6 @@ namespace Trivia_Tracker.Model
             this.lastName = lastName;
             this.username = username;
             this.createdDate = createdDate;
-            this.lastGamePlayed = lastGamePlayed;
             this.lastGameID = lastGameID;
             this.totalScore = totalScore;
             this.gamesPlayed = gamesPlayed;
@@ -74,7 +73,6 @@ namespace Trivia_Tracker.Model
             get { return lastGamePlayed; }
             set { lastGamePlayed = value; }
         }
-
         public int LastGameID
         {
             get { return lastGameID; }

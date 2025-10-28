@@ -22,6 +22,7 @@ namespace Trivia_Tracker.ViewModel
         public PlayerStats()
         {
             InitializeComponent();
+
         }
     }
 }
