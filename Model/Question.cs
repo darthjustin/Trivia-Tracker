@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Trivia_Tracker.Model
 {
     class Question
@@ -17,7 +18,7 @@ namespace Trivia_Tracker.Model
         private string questionType;
         private int pointValue;
 
-        public Question(int questionID, int gameID, int roundNum, string questionText, string category, string correctAnswer, string questionType)
+        public Question(int questionID, int gameID, int roundNum, string questionText, string category, string correctAnswer, string questionType, int pointValue)
         {
             this.questionID = questionID;
             this.gameID = gameID;
@@ -26,6 +27,7 @@ namespace Trivia_Tracker.Model
             this.category = category;
             this.correctAnswer = correctAnswer;
             this.questionType = questionType;
+            this.pointValue = pointValue;
         }
 
         public int QuestionID

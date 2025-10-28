@@ -26,14 +26,23 @@ namespace Trivia_Tracker.ViewModel
         {
             DatabaseHelper.GetConnection();
             InitializeComponent();
+            
             PlayerQuery playerQuery = new PlayerQuery();
-            playerQuery.AddPlayer(new Player(2, "Jdawg", "Joman", "darthjustin", DateTime.Now, DateTime.Now, 2, 20, 4, 21, 1, 25, 3));
+            
+            ResponseQuery responseQuery = new ResponseQuery();
+
+
             List<Player> players = playerQuery.GetAllPlayers();
+            List<Response> responses = new ResponseQuery().getAllResponses();
 
             foreach (Player player in players)
             {
                 Debug.WriteLine($"Player ID: {player.PlayerID}, Name: {player.FirstName} {player.LastName}, Username: {player.Username}, Total Score: {player.TotalScore}");
 
+            }
+            foreach (Response response in responses)
+            {
+                Debug.WriteLine($"Response ID: {response.ResponseID}, Question ID: {response.QuestionID}, Player ID: {response.PlayerID}, Answer: {response.ResponseText}, Is Correct: {response.IsCorrect}, Is Bonus Used: {response.BonusUsed}");
             }
         }
 
