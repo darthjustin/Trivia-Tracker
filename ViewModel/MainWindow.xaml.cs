@@ -98,5 +98,12 @@ namespace Trivia_Tracker.ViewModel
                 Round1Grid.ColumnDefinitions[columnIndex].Width = new GridLength(0);
             }
         }
+
+        private void NavList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Later you'll swap views here.
+            // For now this proves selection is working:
+            Title = $"Trivia Tracker - {((ListBoxItem)NavList.SelectedItem).Name}";
+        }
     }
 }
