@@ -107,7 +107,7 @@
                         <ListBox x:Name="PlayerListBox"
                                  ItemStringFormat="{Binding AllPlayers}"
                                  Margin="0 0 12 0"
-                                 SelectionMode="Multiple"
+                                 SelectionMode="Single"
                                  Height="100"
                                  Background="#262626"
                                  BorderBrush="#444"
@@ -130,7 +130,7 @@
                                 Foreground="#e0e0e0"
                                 Background="#2a2a2a">
                             <StackPanel>
-                                <Grid Margin="8">
+                                <Grid x:Name="Round1Grid" Margin="8">
                                     <!-- shared styles just for this grid -->
                                     <Grid.Resources>
                                         <Style TargetType="ComboBox">
@@ -183,10 +183,10 @@
                                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Q#" FontWeight="Bold"/>
                                     <TextBlock Grid.Row="0" Grid.Column="1" Text="Category" FontWeight="Bold"/>
                                     <TextBlock Grid.Row="0" Grid.Column="2" Text="Correct" FontWeight="Bold"/>
-                                    <TextBlock Grid.Row="0" Grid.Column="3" Text="Player 1" FontWeight="Bold"/>
-                                    <TextBlock Grid.Row="0" Grid.Column="4" Text="Player 2" FontWeight="Bold"/>
-                                    <TextBlock Grid.Row="0" Grid.Column="5" Text="Player 3" FontWeight="Bold"/>
-                                    <TextBlock Grid.Row="0" Grid.Column="6" Text="Player 4" FontWeight="Bold"/>
+                                    <TextBlock x:Name="Player1Header" Grid.Row="0" Grid.Column="3" Text="Player 1" FontWeight="Bold"/>
+                                    <TextBlock x:Name="Player2Header" Grid.Row="0" Grid.Column="4" Text="Player 2" FontWeight="Bold"/>
+                                    <TextBlock x:Name="Player3Header" Grid.Row="0" Grid.Column="5" Text="Player 3" FontWeight="Bold"/>
+                                    <TextBlock x:Name="Player4Header" Grid.Row="0" Grid.Column="6" Text="Player 4" FontWeight="Bold"/>
                                     <TextBlock Grid.Row="0" Grid.Column="7" Text="Bonus"  FontWeight="Bold"
                 HorizontalAlignment="Center"/>
 
@@ -427,16 +427,861 @@
                         <Expander Header="Round 2"
                                   Margin="0 8 12 0"
                                   Foreground="#e0e0e0"
-                                  Background="#2a2a2a"/>
+                                  Background="#2a2a2a">
+                            <StackPanel>
+                                <Grid x:Name="Round2Grid" Margin="8">
+                                    <!-- shared styles just for this grid -->
+                                    <Grid.Resources>
+                                        <Style TargetType="ComboBox">
+                                            <Setter Property="Margin" Value="4 2"/>
+                                            <Setter Property="MinWidth" Value="80"/>
+                                        </Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                            <Setter Property="Foreground" Value="#e0e0e0"/>
+                                        </Style>
+                                        <Style TargetType="CheckBox">
+                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                            <Setter Property="Foreground" Value="#e0e0e0"/>
+                                            <Setter Property="Margin" Value="4 2"/>
+                                        </Style>
+                                    </Grid.Resources>
+
+                                    <!-- columns: Q#, Category, Correct, P1..P4, Bonus -->
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40"/>
+                                        <!-- Q# -->
+                                        <ColumnDefinition Width="140"/>
+                                        <!-- Category -->
+                                        <ColumnDefinition Width="90"/>
+                                        <!-- Correct -->
+                                        <ColumnDefinition Width="90"/>
+                                        <!-- Player 1 -->
+                                        <ColumnDefinition Width="90"/>
+                                        <!-- Player 2 -->
+                                        <ColumnDefinition Width="90"/>
+                                        <!-- Player 3 -->
+                                        <ColumnDefinition Width="90"/>
+                                        <!-- Player 4 -->
+                                        <ColumnDefinition Width="60"/>
+                                        <!-- Bonus flag -->
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- rows: header + 4 questions -->
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <!-- header row -->
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <!-- HEADER ROW -->
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Q#" FontWeight="Bold"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Category" FontWeight="Bold"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Correct" FontWeight="Bold"/>
+                                    <TextBlock x:Name="R2Player1Header" Grid.Row="0" Grid.Column="3" Text="Player 1" FontWeight="Bold"/>
+                                    <TextBlock x:Name="R2Player2Header" Grid.Row="0" Grid.Column="4" Text="Player 2" FontWeight="Bold"/>
+                                    <TextBlock x:Name="R2Player3Header" Grid.Row="0" Grid.Column="5" Text="Player 3" FontWeight="Bold"/>
+                                    <TextBlock x:Name="R2Player4Header" Grid.Row="0" Grid.Column="6" Text="Player 4" FontWeight="Bold"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="7" Text="Bonus"  FontWeight="Bold" HorizontalAlignment="Center"/>
+
+                                    <!-- ROW: Q1 -->
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="1"/>
+                                    <ComboBox Grid.Row="1" Grid.Column="1">
+                                        <!-- placeholder items; later we’ll bind to Categories -->
+                                        <ComboBoxItem Content="Movies"/>
+                                        <ComboBoxItem Content="Science"/>
+                                        <ComboBoxItem Content="History"/>
+                                        <ComboBoxItem Content="Sports"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="1" Grid.Column="2">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="1" Grid.Column="3">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="1" Grid.Column="4">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="1" Grid.Column="5">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="1" Grid.Column="6">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <CheckBox Grid.Row="1" Grid.Column="7" Content="" ToolTip="Bonus used?"/>
+
+                                    <!-- ROW: Q2 -->
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Text="2"/>
+                                    <ComboBox Grid.Row="2" Grid.Column="1">
+                                        <ComboBoxItem Content="Movies"/>
+                                        <ComboBoxItem Content="Science"/>
+                                        <ComboBoxItem Content="History"/>
+                                        <ComboBoxItem Content="Sports"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="2" Grid.Column="2">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="2" Grid.Column="3">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="2" Grid.Column="4">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="2" Grid.Column="5">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="2" Grid.Column="6">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <CheckBox Grid.Row="2" Grid.Column="7" ToolTip="Bonus used?"/>
+
+                                    <!-- ROW: Q3 -->
+                                    <TextBlock Grid.Row="3" Grid.Column="0" Text="3"/>
+                                    <ComboBox Grid.Row="3" Grid.Column="1">
+                                        <ComboBoxItem Content="Movies"/>
+                                        <ComboBoxItem Content="Science"/>
+                                        <ComboBoxItem Content="History"/>
+                                        <ComboBoxItem Content="Sports"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="3" Grid.Column="2">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="3" Grid.Column="3">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="3" Grid.Column="4">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="3" Grid.Column="5">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="3" Grid.Column="6">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <CheckBox Grid.Row="3" Grid.Column="7" ToolTip="Bonus used?"/>
+
+                                    <!-- ROW: Q4 -->
+                                    <TextBlock Grid.Row="4" Grid.Column="0" Text="4"/>
+                                    <ComboBox Grid.Row="4" Grid.Column="1">
+                                        <ComboBoxItem Content="Movies"/>
+                                        <ComboBoxItem Content="Science"/>
+                                        <ComboBoxItem Content="History"/>
+                                        <ComboBoxItem Content="Sports"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="4" Grid.Column="2">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="4" Grid.Column="3">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="4" Grid.Column="4">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="4" Grid.Column="5">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="4" Grid.Column="6">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <CheckBox Grid.Row="4" Grid.Column="7" ToolTip="Bonus used?"/>
+                                </Grid>
+
+                                <!-- DOUBLE DOWN SECTION -->
+                                <Border Margin="0 16 0 0"
+                                        Background="#262626"
+                                        CornerRadius="6"
+                                        Padding="12">
+                                    <StackPanel>
+                                        <TextBlock Text="Double Down Dare"
+                                                FontWeight="Bold"
+                                                FontSize="14"
+                                                Margin="0 0 0 8"
+                                                Foreground="#ffffff"/>
+                                        <TextBlock Text="Correct Answer"
+                                                Foreground="#e0e0e0"/>
+                                        <TextBox Margin="0 4 0 12"/>
+
+                                        <TextBlock Text="Player Answers"
+                                                Margin=" 0 0 0 6"
+                                                Foreground="#e0e0e0"/>
+
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120"/>
+                                                <!-- player name -->
+                                                <ColumnDefinition Width="*"/>
+                                                <!-- answer -->
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <!-- Player 1 -->
+                                            <TextBlock Grid.Row="0" 
+                                       Grid.Column="0" 
+                                       Text="Player 1" 
+                                       VerticalAlignment="Center"
+                                       Foreground="#e0e0e0"/>
+                                            <TextBox  Grid.Row="0" Grid.Column="1" Margin="0 2 0 2"/>
+
+                                            <!-- Player 2 -->
+                                            <TextBlock Grid.Row="1" 
+                                       Grid.Column="0" 
+                                       Text="Player 2" 
+                                       VerticalAlignment="Center"
+                                       Foreground="#e0e0e0"/>
+                                            <TextBox  Grid.Row="1" Grid.Column="1" Margin="0 2 0 2"/>
+
+                                            <!-- Player 3 -->
+                                            <TextBlock Grid.Row="2" 
+                                       Grid.Column="0" 
+                                       Text="Player 3" 
+                                       VerticalAlignment="Center"
+                                       Foreground="#e0e0e0"/>
+                                            <TextBox  Grid.Row="2" Grid.Column="1" Margin="0 2 0 2"/>
+
+                                            <!-- Player 4 -->
+                                            <TextBlock Grid.Row="3" 
+                                       Grid.Column="0" 
+                                       Text="Player 4" 
+                                       VerticalAlignment="Center"
+                                       Foreground="#e0e0e0"/>
+                                            <TextBox  Grid.Row="3" Grid.Column="1" Margin="0 2 0 2"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Expander>
+
                         <Expander Header="Round 3"
                                   Margin="0 8 12 0"
                                   Foreground="#e0e0e0"
-                                  Background="#2a2a2a"/>
+                                  Background="#2a2a2a">
+                            <StackPanel>
+                                <Grid x:Name="Round3Grid" Margin="8">
+                                    <!-- shared styles just for this grid -->
+                                    <Grid.Resources>
+                                        <Style TargetType="ComboBox">
+                                            <Setter Property="Margin" Value="4 2"/>
+                                            <Setter Property="MinWidth" Value="80"/>
+                                        </Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                            <Setter Property="Foreground" Value="#e0e0e0"/>
+                                        </Style>
+                                        <Style TargetType="CheckBox">
+                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                            <Setter Property="Foreground" Value="#e0e0e0"/>
+                                            <Setter Property="Margin" Value="4 2"/>
+                                        </Style>
+                                    </Grid.Resources>
+
+                                    <!-- columns: Q#, Category, Correct, P1..P4, Bonus -->
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40"/>
+                                        <!-- Q# -->
+                                        <ColumnDefinition Width="140"/>
+                                        <!-- Category -->
+                                        <ColumnDefinition Width="90"/>
+                                        <!-- Correct -->
+                                        <ColumnDefinition Width="90"/>
+                                        <!-- Player 1 -->
+                                        <ColumnDefinition Width="90"/>
+                                        <!-- Player 2 -->
+                                        <ColumnDefinition Width="90"/>
+                                        <!-- Player 3 -->
+                                        <ColumnDefinition Width="90"/>
+                                        <!-- Player 4 -->
+                                        <ColumnDefinition Width="60"/>
+                                        <!-- Bonus flag -->
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- rows: header + 4 questions -->
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <!-- header row -->
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <!-- HEADER ROW -->
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Q#" FontWeight="Bold"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Category" FontWeight="Bold"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Correct" FontWeight="Bold"/>
+                                    <TextBlock x:Name="R3Player1Header" Grid.Row="0" Grid.Column="3" Text="Player 1" FontWeight="Bold"/>
+                                    <TextBlock x:Name="R3Player2Header" Grid.Row="0" Grid.Column="4" Text="Player 2" FontWeight="Bold"/>
+                                    <TextBlock x:Name="R3Player3Header" Grid.Row="0" Grid.Column="5" Text="Player 3" FontWeight="Bold"/>
+                                    <TextBlock x:Name="R3Player4Header" Grid.Row="0" Grid.Column="6" Text="Player 4" FontWeight="Bold"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="7" Text="Bonus"  FontWeight="Bold" HorizontalAlignment="Center"/>
+
+                                    <!-- ROW: Q1 -->
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="1"/>
+                                    <ComboBox Grid.Row="1" Grid.Column="1">
+                                        <!-- placeholder items; later we’ll bind to Categories -->
+                                        <ComboBoxItem Content="Movies"/>
+                                        <ComboBoxItem Content="Science"/>
+                                        <ComboBoxItem Content="History"/>
+                                        <ComboBoxItem Content="Sports"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="1" Grid.Column="2">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="1" Grid.Column="3">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="1" Grid.Column="4">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="1" Grid.Column="5">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="1" Grid.Column="6">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <CheckBox Grid.Row="1" Grid.Column="7" Content="" ToolTip="Bonus used?"/>
+
+                                    <!-- ROW: Q2 -->
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Text="2"/>
+                                    <ComboBox Grid.Row="2" Grid.Column="1">
+                                        <ComboBoxItem Content="Movies"/>
+                                        <ComboBoxItem Content="Science"/>
+                                        <ComboBoxItem Content="History"/>
+                                        <ComboBoxItem Content="Sports"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="2" Grid.Column="2">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="2" Grid.Column="3">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="2" Grid.Column="4">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="2" Grid.Column="5">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="2" Grid.Column="6">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <CheckBox Grid.Row="2" Grid.Column="7" ToolTip="Bonus used?"/>
+
+                                    <!-- ROW: Q3 -->
+                                    <TextBlock Grid.Row="3" Grid.Column="0" Text="3"/>
+                                    <ComboBox Grid.Row="3" Grid.Column="1">
+                                        <ComboBoxItem Content="Movies"/>
+                                        <ComboBoxItem Content="Science"/>
+                                        <ComboBoxItem Content="History"/>
+                                        <ComboBoxItem Content="Sports"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="3" Grid.Column="2">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="3" Grid.Column="3">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="3" Grid.Column="4">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="3" Grid.Column="5">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="3" Grid.Column="6">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <CheckBox Grid.Row="3" Grid.Column="7" ToolTip="Bonus used?"/>
+
+                                    <!-- ROW: Q4 -->
+                                    <TextBlock Grid.Row="4" Grid.Column="0" Text="4"/>
+                                    <ComboBox Grid.Row="4" Grid.Column="1">
+                                        <ComboBoxItem Content="Movies"/>
+                                        <ComboBoxItem Content="Science"/>
+                                        <ComboBoxItem Content="History"/>
+                                        <ComboBoxItem Content="Sports"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="4" Grid.Column="2">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="4" Grid.Column="3">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="4" Grid.Column="4">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="4" Grid.Column="5">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="4" Grid.Column="6">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <CheckBox Grid.Row="4" Grid.Column="7" ToolTip="Bonus used?"/>
+                                </Grid>
+
+                                <!-- DOUBLE DOWN SECTION -->
+                                <Border Margin="0 16 0 0"
+                                        Background="#262626"
+                                        CornerRadius="6"
+                                        Padding="12">
+                                    <StackPanel>
+                                        <TextBlock Text="Double Down Dare"
+                                                   FontWeight="Bold"
+                                                   FontSize="14"
+                                                   Margin="0 0 0 8"
+                                                   Foreground="#ffffff"/>
+                                        <TextBlock Text="Correct Answer"
+                                                   Foreground="#e0e0e0"/>
+                                        <TextBox Margin="0 4 0 12"/>
+
+                                        <TextBlock Text="Player Answers"
+                                                   Margin=" 0 0 0 6"
+                                                   Foreground="#e0e0e0"/>
+
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120"/>
+                                                <!-- player name -->
+                                                <ColumnDefinition Width="*"/>
+                                                <!-- answer -->
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <!-- Player 1 -->
+                                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Player 1" VerticalAlignment="Center" Foreground="#e0e0e0"/>
+                                            <TextBox  Grid.Row="0" Grid.Column="1" Margin="0 2 0 2"/>
+
+                                            <!-- Player 2 -->
+                                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Player 2" VerticalAlignment="Center" Foreground="#e0e0e0"/>
+                                            <TextBox  Grid.Row="1" Grid.Column="1" Margin="0 2 0 2"/>
+
+                                            <!-- Player 3 -->
+                                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Player 3" VerticalAlignment="Center" Foreground="#e0e0e0"/>
+                                            <TextBox  Grid.Row="2" Grid.Column="1" Margin="0 2 0 2"/>
+
+                                            <!-- Player 4 -->
+                                            <TextBlock Grid.Row="3" Grid.Column="0" Text="Player 4" VerticalAlignment="Center" Foreground="#e0e0e0"/>
+                                            <TextBox  Grid.Row="3" Grid.Column="1" Margin="0 2 0 2"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Expander>
 
                         <Expander Header="Round 4"
                                   Margin="0 8 12 0"
                                   Foreground="#e0e0e0"
-                                  Background="#2a2a2a"/>
+                                  Background="#2a2a2a">
+                            <StackPanel>
+                                <Grid x:Name="Round4Grid" Margin="8">
+                                    <!-- shared styles just for this grid -->
+                                    <Grid.Resources>
+                                        <Style TargetType="ComboBox">
+                                            <Setter Property="Margin" Value="4 2"/>
+                                            <Setter Property="MinWidth" Value="80"/>
+                                        </Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                            <Setter Property="Foreground" Value="#e0e0e0"/>
+                                        </Style>
+                                        <Style TargetType="CheckBox">
+                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                            <Setter Property="Foreground" Value="#e0e0e0"/>
+                                            <Setter Property="Margin" Value="4 2"/>
+                                        </Style>
+                                    </Grid.Resources>
+
+                                    <!-- columns: Q#, Category, Correct, P1..P4, Bonus -->
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40"/>
+                                        <!-- Q# -->
+                                        <ColumnDefinition Width="140"/>
+                                        <!-- Category -->
+                                        <ColumnDefinition Width="90"/>
+                                        <!-- Correct -->
+                                        <ColumnDefinition Width="90"/>
+                                        <!-- Player 1 -->
+                                        <ColumnDefinition Width="90"/>
+                                        <!-- Player 2 -->
+                                        <ColumnDefinition Width="90"/>
+                                        <!-- Player 3 -->
+                                        <ColumnDefinition Width="90"/>
+                                        <!-- Player 4 -->
+                                        <ColumnDefinition Width="60"/>
+                                        <!-- Bonus flag -->
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- rows: header + 4 questions -->
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <!-- header row -->
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <!-- HEADER ROW -->
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Q#" FontWeight="Bold"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Category" FontWeight="Bold"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Correct" FontWeight="Bold"/>
+                                    <TextBlock x:Name="R4Player1Header" Grid.Row="0" Grid.Column="3" Text="Player 1" FontWeight="Bold"/>
+                                    <TextBlock x:Name="R4Player2Header" Grid.Row="0" Grid.Column="4" Text="Player 2" FontWeight="Bold"/>
+                                    <TextBlock x:Name="R4Player3Header" Grid.Row="0" Grid.Column="5" Text="Player 3" FontWeight="Bold"/>
+                                    <TextBlock x:Name="R4Player4Header" Grid.Row="0" Grid.Column="6" Text="Player 4" FontWeight="Bold"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="7" Text="Bonus"  FontWeight="Bold" HorizontalAlignment="Center"/>
+
+                                    <!-- ROW: Q1 -->
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="1"/>
+                                    <ComboBox Grid.Row="1" Grid.Column="1">
+                                        <!-- placeholder items; later we’ll bind to Categories -->
+                                        <ComboBoxItem Content="Movies"/>
+                                        <ComboBoxItem Content="Science"/>
+                                        <ComboBoxItem Content="History"/>
+                                        <ComboBoxItem Content="Sports"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="1" Grid.Column="2">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="1" Grid.Column="3">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="1" Grid.Column="4">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="1" Grid.Column="5">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="1" Grid.Column="6">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <CheckBox Grid.Row="1" Grid.Column="7" Content="" ToolTip="Bonus used?"/>
+
+                                    <!-- ROW: Q2 -->
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Text="2"/>
+                                    <ComboBox Grid.Row="2" Grid.Column="1">
+                                        <ComboBoxItem Content="Movies"/>
+                                        <ComboBoxItem Content="Science"/>
+                                        <ComboBoxItem Content="History"/>
+                                        <ComboBoxItem Content="Sports"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="2" Grid.Column="2">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="2" Grid.Column="3">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="2" Grid.Column="4">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="2" Grid.Column="5">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="2" Grid.Column="6">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <CheckBox Grid.Row="2" Grid.Column="7" ToolTip="Bonus used?"/>
+
+                                    <!-- ROW: Q3 -->
+                                    <TextBlock Grid.Row="3" Grid.Column="0" Text="3"/>
+                                    <ComboBox Grid.Row="3" Grid.Column="1">
+                                        <ComboBoxItem Content="Movies"/>
+                                        <ComboBoxItem Content="Science"/>
+                                        <ComboBoxItem Content="History"/>
+                                        <ComboBoxItem Content="Sports"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="3" Grid.Column="2">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="3" Grid.Column="3">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="3" Grid.Column="4">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="3" Grid.Column="5">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="3" Grid.Column="6">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <CheckBox Grid.Row="3" Grid.Column="7" ToolTip="Bonus used?"/>
+
+                                    <!-- ROW: Q4 -->
+                                    <TextBlock Grid.Row="4" Grid.Column="0" Text="4"/>
+                                    <ComboBox Grid.Row="4" Grid.Column="1">
+                                        <ComboBoxItem Content="Movies"/>
+                                        <ComboBoxItem Content="Science"/>
+                                        <ComboBoxItem Content="History"/>
+                                        <ComboBoxItem Content="Sports"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="4" Grid.Column="2">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="4" Grid.Column="3">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="4" Grid.Column="4">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="4" Grid.Column="5">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <ComboBox Grid.Row="4" Grid.Column="6">
+                                        <ComboBoxItem Content="A"/>
+                                        <ComboBoxItem Content="B"/>
+                                        <ComboBoxItem Content="C"/>
+                                        <ComboBoxItem Content="D"/>
+                                    </ComboBox>
+                                    <CheckBox Grid.Row="4" Grid.Column="7" ToolTip="Bonus used?"/>
+                                </Grid>
+
+                                <!-- DOUBLE DOWN SECTION -->
+                                <Border Margin="0 16 0 0"
+                                        Background="#262626"
+                                        CornerRadius="6"
+                                        Padding="12">
+                                    <StackPanel>
+                                        <TextBlock Text="Double Down Dare"
+                                                   FontWeight="Bold"
+                                                   FontSize="14"
+                                                   Margin="0 0 0 8"
+                                                   Foreground="#ffffff"/>
+                                        <TextBlock Text="Correct Answer"
+                                                   Foreground="#e0e0e0"/>
+                                        <TextBox Margin="0 4 0 12"/>
+
+                                        <TextBlock Text="Player Answers"
+                                                   Margin=" 0 0 0 6"
+                                                   Foreground="#e0e0e0"/>
+
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120"/>
+                                                <!-- player name -->
+                                                <ColumnDefinition Width="*"/>
+                                                <!-- answer -->
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <!-- Player 1 -->
+                                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Player 1" VerticalAlignment="Center" Foreground="#e0e0e0"/>
+                                            <TextBox  Grid.Row="0" Grid.Column="1" Margin="0 2 0 2"/>
+
+                                            <!-- Player 2 -->
+                                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Player 2" VerticalAlignment="Center" Foreground="#e0e0e0"/>
+                                            <TextBox  Grid.Row="1" Grid.Column="1" Margin="0 2 0 2"/>
+
+                                            <!-- Player 3 -->
+                                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Player 3" VerticalAlignment="Center" Foreground="#e0e0e0"/>
+                                            <TextBox  Grid.Row="2" Grid.Column="1" Margin="0 2 0 2"/>
+
+                                            <!-- Player 4 -->
+                                            <TextBlock Grid.Row="3" Grid.Column="0" Text="Player 4" VerticalAlignment="Center" Foreground="#e0e0e0"/>
+                                            <TextBox  Grid.Row="3" Grid.Column="1" Margin="0 2 0 2"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Expander>
 
                         <Button Content="Save Game"
                                 Margin="0 20 12 0"

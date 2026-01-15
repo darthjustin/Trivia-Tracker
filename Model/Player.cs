@@ -22,6 +22,8 @@ namespace Trivia_Tracker.Model
         private int bestGameScore;
         private int bestGameID;
 
+        private bool isSelected;
+
         public Player(int playerID, string firstName, string lastName, string username, DateTime createdDate, DateTime lastGamePlayed, int lastGameID, int totalScore, int gamesPlayed, int totalGuesses, int totalCorrect, int bestGameScore, int bestGameID)
         {
             this.playerID = playerID;

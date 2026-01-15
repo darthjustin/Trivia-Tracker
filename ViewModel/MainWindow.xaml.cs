@@ -72,5 +72,31 @@ namespace Trivia_Tracker.ViewModel
             playerStatsWindow.Closed += (s, args) => this.Show();
         }
 
+        private void PlayerListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Player List Box Selection Changed
+            var selectedPlayer = PlayerListBox.SelectedItems.Cast<Player>().ToList();
+
+            SetPlayerHeader(Player1Header, selectedPlayer, 0, 3);
+            SetPlayerHeader(Player2Header, selectedPlayer, 1, 4);
+            SetPlayerHeader(Player3Header, selectedPlayer, 2, 5);
+            SetPlayerHeader(Player4Header, selectedPlayer, 3, 6);
+        }
+
+        private void SetPlayerHeader(TextBlock header, List<Player> selected, int index, int columnIndex)
+        {
+            if (index < selected.Count)
+            {
+                header.Text = selected[index].FirstName + " " + selected[index].LastName;
+                header.Visibility = Visibility.Visible;
+                Round1Grid.ColumnDefinitions[columnIndex].Width = GridLength.Auto;
+            }
+            else
+            {
+                header.Text = string.Empty;
+                header.Visibility = Visibility.Collapsed;
+                Round1Grid.ColumnDefinitions[columnIndex].Width = new GridLength(0);
+            }
+        }
     }
 }
