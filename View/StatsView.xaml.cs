@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Trivia_Tracker.ViewModel
+namespace Trivia_Tracker.View
 {
     /// <summary>
-    /// Interaction logic for AddPlayerResponse.xaml
+    /// Interaction logic for Stats.xaml
     /// </summary>
-    public partial class AddPlayerResponse : Window
+    public partial class StatsView : UserControl
     {
-        public AddPlayerResponse()
+        public StatsView()
         {
             InitializeComponent();
         }

@@ -10,25 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Trivia_Tracker.ViewModel
+namespace Trivia_Tracker.View
 {
     /// <summary>
-    /// Interaction logic for AddGame.xaml
+    /// Interaction logic for SettingsView.xaml
     /// </summary>
-    public partial class AddGame : Window
+    public partial class SettingsView : UserControl
     {
-        public AddGame()
+        public SettingsView()
         {
             InitializeComponent();
-        }
-
-        private void ButtonNext_Click(object sender, RoutedEventArgs e)
-        {
-            AddQuestion addQuestionWindow = new AddQuestion();
-            addQuestionWindow.Show();
-            this.Hide();
         }
     }
 }
