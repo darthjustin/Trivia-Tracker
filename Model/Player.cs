@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Trivia_Tracker.Model
 {
-    class Player
+    class Player : INotifyPropertyChanged
     {
         private int playerID;
         private string firstName;
@@ -117,5 +118,29 @@ namespace Trivia_Tracker.Model
             set { bestGameID = value; }
         }
 
+        public bool IsSelected
+        {
+            get { return isSelected; }
+            set
+            {
+                if (isSelected != value)
+                {
+                    isSelected = value;
+                    OnPropertyChanged(nameof(IsSelected));
+                }
+            }
+        }
+
+        public string FullName
+        {
+            get { return $"{FirstName} {LastName}"; }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

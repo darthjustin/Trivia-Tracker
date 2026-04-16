@@ -40,12 +40,20 @@ namespace Trivia_Tracker.ViewModel
             Loaded += (_, __) =>
             {
                 _isLoaded = true;
-                MainContentHost.Content = _addGameView; // default
-                NavList.SelectedIndex = 0;              // force after load
+
+                int savedIndex = Properties.Settings.Default.LastNavIndex;
+
+                if (savedIndex < 0 || savedIndex > 3)
+                {
+                    savedIndex = 0;
+                }
+
+                NavList.SelectedIndex = savedIndex; // loads last saved view
+                NavigateTo(savedIndex);
             };
 
             PlayerQuery playerQuery = new PlayerQuery();
-            
+
             ResponseQuery responseQuery = new ResponseQuery();
 
 
@@ -103,7 +111,22 @@ namespace Trivia_Tracker.ViewModel
             {
                 return;
             }
-            switch (NavList.SelectedIndex)
+
+            int index = NavList.SelectedIndex;
+            if (index < 0)
+            {
+                return;
+            }
+
+            Properties.Settings.Default.LastNavIndex = index;
+            Properties.Settings.Default.Save();
+
+            NavigateTo(index);
+        }
+
+        private void NavigateTo(int index)
+        {
+            switch (index)
             {
                 case 0:
                     MainContentHost.Content = _addGameView;
@@ -125,5 +148,5 @@ namespace Trivia_Tracker.ViewModel
                     break;
             }
         }
-    }
+    }   
 }

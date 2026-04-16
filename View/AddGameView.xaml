@@ -25,7 +25,6 @@
 
                     <TextBlock Text="Select Players" Foreground="#e0e0e0" FontSize="15"/>
                     <ListBox x:Name="PlayerListBox"
-                     ItemStringFormat="{Binding AllPlayers}"
                      Margin="0 0 12 0"
                      SelectionMode="Single"
                      Height="100"
@@ -36,7 +35,7 @@
                         <!-- Placeholder items; later we’ll bind to the player list -->
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <CheckBox Content="{Binding Name}"
+                                <CheckBox Content="{Binding FullName}"
                                   IsChecked="{Binding IsSelected, Mode=TwoWay}"
                                   Foreground="White"
                                   Margin="4 2"/>
@@ -291,7 +290,7 @@
                                        Margin=" 0 0 0 6"
                                        Foreground="#e0e0e0"/>
 
-                                    <Grid>
+                                    <Grid x:Name="DD1Grid">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="120"/>
                                             <!-- player name -->
@@ -307,35 +306,19 @@
                                         </Grid.RowDefinitions>
 
                                         <!-- Player 1 -->
-                                        <TextBlock Grid.Row="0" 
-                                           Grid.Column="0" 
-                                           Text="Player 1" 
-                                           VerticalAlignment="Center"
-                                           Foreground="#e0e0e0"/>
+                                        <TextBlock x:Name="DD1Player1Label" Grid.Row="0" Grid.Column="0" Text="Player 1" VerticalAlignment="Center" Foreground="#e0e0e0"/>
                                         <TextBox  Grid.Row="0" Grid.Column="1" Margin="0 2 0 2"/>
 
                                         <!-- Player 2 -->
-                                        <TextBlock Grid.Row="1" 
-                                           Grid.Column="0" 
-                                           Text="Player 2" 
-                                           VerticalAlignment="Center"
-                                           Foreground="#e0e0e0"/>
+                                        <TextBlock x:Name="DD1Player2Label" Grid.Row="1" Grid.Column="0" Text="Player 2" VerticalAlignment="Center" Foreground="#e0e0e0"/>
                                         <TextBox  Grid.Row="1" Grid.Column="1" Margin="0 2 0 2"/>
 
                                         <!-- Player 3 -->
-                                        <TextBlock Grid.Row="2" 
-                                           Grid.Column="0" 
-                                           Text="Player 3" 
-                                           VerticalAlignment="Center"
-                                           Foreground="#e0e0e0"/>
+                                        <TextBlock x:Name="DD1Player3Label" Grid.Row="2" Grid.Column="0" Text="Player 3" VerticalAlignment="Center" Foreground="#e0e0e0"/>
                                         <TextBox  Grid.Row="2" Grid.Column="1" Margin="0 2 0 2"/>
 
                                         <!-- Player 4 -->
-                                        <TextBlock Grid.Row="3" 
-                                           Grid.Column="0" 
-                                           Text="Player 4" 
-                                           VerticalAlignment="Center"
-                                           Foreground="#e0e0e0"/>
+                                        <TextBlock x:Name="DD1Player4Label" Grid.Row="3" Grid.Column="0" Text="Player 4" VerticalAlignment="Center" Foreground="#e0e0e0"/>
                                         <TextBox  Grid.Row="3" Grid.Column="1" Margin="0 2 0 2"/>
                                     </Grid>
                                 </StackPanel>
@@ -589,7 +572,7 @@
                                     Margin=" 0 0 0 6"
                                     Foreground="#e0e0e0"/>
 
-                                    <Grid>
+                                    <Grid x:Name="DD2Grid">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="120"/>
                                             <!-- player name -->
@@ -605,35 +588,19 @@
                                         </Grid.RowDefinitions>
 
                                         <!-- Player 1 -->
-                                        <TextBlock Grid.Row="0" 
-                           Grid.Column="0" 
-                           Text="Player 1" 
-                           VerticalAlignment="Center"
-                           Foreground="#e0e0e0"/>
+                                        <TextBlock x:Name="DD2Player1Label" Grid.Row="0" Grid.Column="0" Text="Player 1" VerticalAlignment="Center" Foreground="#e0e0e0"/>
                                         <TextBox  Grid.Row="0" Grid.Column="1" Margin="0 2 0 2"/>
 
                                         <!-- Player 2 -->
-                                        <TextBlock Grid.Row="1" 
-                           Grid.Column="0" 
-                           Text="Player 2" 
-                           VerticalAlignment="Center"
-                           Foreground="#e0e0e0"/>
+                                        <TextBlock x:Name="DD2Player2Label" Grid.Row="1" Grid.Column="0" Text="Player 2" VerticalAlignment="Center" Foreground="#e0e0e0"/>
                                         <TextBox  Grid.Row="1" Grid.Column="1" Margin="0 2 0 2"/>
 
                                         <!-- Player 3 -->
-                                        <TextBlock Grid.Row="2" 
-                           Grid.Column="0" 
-                           Text="Player 3" 
-                           VerticalAlignment="Center"
-                           Foreground="#e0e0e0"/>
+                                        <TextBlock x:Name="DD2Player3Label" Grid.Row="2" Grid.Column="0" Text="Player 3" VerticalAlignment="Center" Foreground="#e0e0e0"/>
                                         <TextBox  Grid.Row="2" Grid.Column="1" Margin="0 2 0 2"/>
 
                                         <!-- Player 4 -->
-                                        <TextBlock Grid.Row="3" 
-                           Grid.Column="0" 
-                           Text="Player 4" 
-                           VerticalAlignment="Center"
-                           Foreground="#e0e0e0"/>
+                                        <TextBlock x:Name="DD2Player4Label" Grid.Row="3" Grid.Column="0" Text="Player 4" VerticalAlignment="Center" Foreground="#e0e0e0"/>
                                         <TextBox  Grid.Row="3" Grid.Column="1" Margin="0 2 0 2"/>
                                     </Grid>
                                 </StackPanel>
@@ -886,7 +853,7 @@
                                        Margin=" 0 0 0 6"
                                        Foreground="#e0e0e0"/>
 
-                                    <Grid>
+                                    <Grid x:Name="DD3Grid">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="120"/>
                                             <!-- player name -->
@@ -902,19 +869,19 @@
                                         </Grid.RowDefinitions>
 
                                         <!-- Player 1 -->
-                                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Player 1" VerticalAlignment="Center" Foreground="#e0e0e0"/>
+                                        <TextBlock x:Name="DD3Player1Label" Grid.Row="0" Grid.Column="0" Text="Player 1" VerticalAlignment="Center" Foreground="#e0e0e0"/>
                                         <TextBox  Grid.Row="0" Grid.Column="1" Margin="0 2 0 2"/>
 
                                         <!-- Player 2 -->
-                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Player 2" VerticalAlignment="Center" Foreground="#e0e0e0"/>
+                                        <TextBlock x:Name="DD3Player2Label" Grid.Row="1" Grid.Column="0" Text="Player 2" VerticalAlignment="Center" Foreground="#e0e0e0"/>
                                         <TextBox  Grid.Row="1" Grid.Column="1" Margin="0 2 0 2"/>
 
                                         <!-- Player 3 -->
-                                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Player 3" VerticalAlignment="Center" Foreground="#e0e0e0"/>
+                                        <TextBlock x:Name="DD3Player3Label" Grid.Row="2" Grid.Column="0" Text="Player 3" VerticalAlignment="Center" Foreground="#e0e0e0"/>
                                         <TextBox  Grid.Row="2" Grid.Column="1" Margin="0 2 0 2"/>
 
                                         <!-- Player 4 -->
-                                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Player 4" VerticalAlignment="Center" Foreground="#e0e0e0"/>
+                                        <TextBlock x:Name="DD3Player4Label" Grid.Row="3" Grid.Column="0" Text="Player 4" VerticalAlignment="Center" Foreground="#e0e0e0"/>
                                         <TextBox  Grid.Row="3" Grid.Column="1" Margin="0 2 0 2"/>
                                     </Grid>
                                 </StackPanel>

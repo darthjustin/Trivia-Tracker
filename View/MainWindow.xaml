@@ -76,7 +76,6 @@
                      Background="Transparent"
                      BorderThickness="0"
                      Foreground="#e0e0e0"
-                     SelectedIndex="0"
                      Padding="6"
                      SelectionChanged="NavList_SelectionChanged">
 
