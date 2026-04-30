@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Trivia_Tracker.Model
 {
-    class Player : INotifyPropertyChanged
+    public class Player : INotifyPropertyChanged
     {
         private int playerID;
         private string firstName;
