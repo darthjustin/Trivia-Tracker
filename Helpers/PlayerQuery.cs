@@ -109,5 +109,43 @@ namespace Trivia_Tracker.Helpers
                 }
             }
         }
+
+        public void UpdatePlayer(Player player)
+        {
+            string query = "UPDATE players SET first_name = @firstName, last_name = @lastName, user_name = @userName, created_at = @createdAt, last_game_played = @lastGamePlayed, last_game_ID = @lastGameID, total_score = @totalScore, games_played = @gamesPlayed, total_guesses = @totalGuesses, total_correct = @totalCorrect, best_game_score = @bestGameScore, best_game_ID = @bestGameID WHERE player_ID = @playerID";
+            using (var conn = DatabaseHelper.GetConnection())
+            {
+                using (var command = new MySqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@firstName", player.FirstName);
+                    command.Parameters.AddWithValue("@lastName", player.LastName);
+                    command.Parameters.AddWithValue("@userName", player.Username);
+                    command.Parameters.AddWithValue("@createdAt", player.CreatedDate);
+                    command.Parameters.AddWithValue("@lastGamePlayed", player.LastGamePlayed);
+                    command.Parameters.AddWithValue("@lastGameID", player.LastGameID);
+                    command.Parameters.AddWithValue("@totalScore", player.TotalScore);
+                    command.Parameters.AddWithValue("@gamesPlayed", player.GamesPlayed);
+                    command.Parameters.AddWithValue("@totalGuesses", player.TotalGuesses);
+                    command.Parameters.AddWithValue("@totalCorrect", player.TotalCorrect);
+                    command.Parameters.AddWithValue("@bestGameScore", player.BestGameScore);
+                    command.Parameters.AddWithValue("@bestGameID", player.BestGameID);
+                    command.Parameters.AddWithValue("@playerID", player.PlayerID);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void DeletePlayer(int playerId)
+        {
+            string query = "DELETE FROM players WHERE player_ID = @playerID";
+            using (var conn = DatabaseHelper.GetConnection())
+            {
+                using (var command = new MySqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@playerID", playerId);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

@@ -5,11 +5,211 @@
              MinWidth="900"
              Background="#121212">
     <Grid Background="#121212">
-        <Border Background="#1f1f1f" CornerRadius="8" Padding="20" Margin="20">
-            <TextBlock Text="Players"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#1f1f1f" CornerRadius="8" Padding="20" Margin="20,20,20,0">
+            <TextBlock Text="Manage Players"
                        Foreground="White"
                        FontSize="28"
                        FontWeight="Bold"/>
+        </Border>
+
+        <!-- Search and Action Buttons -->
+        <Border Grid.Row="1" Background="#1f1f1f" CornerRadius="8" Padding="20" Margin="20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Search Box -->
+                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                    <TextBlock Text="Search Players" Foreground="#e0e0e0" FontSize="12" Margin="0,0,0,4"/>
+                    <TextBox x:Name="SearchBox"
+                             Background="#262626"
+                             Foreground="White"
+                             BorderBrush="#444"
+                             BorderThickness="1"
+                             Padding="10"
+                             materialDesign:HintAssist.Hint="Name or Username"
+                             TextChanged="SearchBox_TextChanged"/>
+                </StackPanel>
+
+                <!-- Refresh Button -->
+                <Button Grid.Column="1"
+                        Content="Refresh"
+                        Background="#2196F3"
+                        Foreground="White"
+                        Padding="12,8"
+                        Margin="5,24,5,0"
+                        Click="RefreshButton_Click"
+                        Cursor="Hand"/>
+
+                <!-- Add Player Button -->
+                <Button Grid.Column="2"
+                        Content="Add Player"
+                        Background="#2196F3"
+                        Foreground="White"
+                        Padding="12,8"
+                        Margin="5,24,5,0"
+                        Click="AddPlayerButton_Click"
+                        Cursor="Hand"/>
+
+                <!-- Edit Button -->
+                <Button Grid.Column="3"
+                        x:Name="EditButton"
+                        Content="Edit"
+                        Background="#2196F3"
+                        Foreground="White"
+                        Padding="12,8"
+                        Margin="5,24,5,0"
+                        Click="EditButton_Click"
+                        Cursor="Hand"
+                        IsEnabled="False"/>
+
+                <!-- Delete Button -->
+                <Button Grid.Column="4"
+                        x:Name="DeleteButton"
+                        Content="Delete"
+                        Background="#d32f2f"
+                        Foreground="White"
+                        Padding="12,8"
+                        Margin="5,24,5,0"
+                        Click="DeleteButton_Click"
+                        Cursor="Hand"
+                        IsEnabled="False"/>
+            </Grid>
+        </Border>
+
+        <!-- Players DataGrid -->
+        <Border Grid.Row="2" Background="#1f1f1f" CornerRadius="8" Padding="20" Margin="20">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Background="#1f1f1f">
+                <DataGrid x:Name="PlayersDataGrid"
+                          Background="#262626"
+                          BorderBrush="#444"
+                          BorderThickness="1"
+                          Foreground="White"
+                          RowBackground="#262626"
+                          AlternatingRowBackground="#2a2a2a"
+                          HeadersVisibility="Column"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          SelectionMode="Single"
+                          SelectionChanged="PlayersDataGrid_SelectionChanged"
+                          GridLinesVisibility="Horizontal"
+                          HorizontalGridLinesBrush="#3a3a3a"
+                          VerticalGridLinesBrush="Transparent">
+
+                    <!-- Column Definitions -->
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Player ID" Binding="{Binding PlayerID}" Width="70" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}" Width="100" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" Width="100" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Username" Binding="{Binding Username}" Width="120" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Games Played" Binding="{Binding GamesPlayed}" Width="90" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Total Score" Binding="{Binding TotalScore}" Width="100" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Best Game Score" Binding="{Binding BestGameScore}" Width="120" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Total Correct" Binding="{Binding TotalCorrect}" Width="100" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Created Date" Binding="{Binding CreatedDate, StringFormat=MM/dd/yyyy}" Width="110" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Last Game" Binding="{Binding LastGamePlayed, StringFormat=MM/dd/yyyy}" Width="110" IsReadOnly="True"/>
+                    </DataGrid.Columns>
+
+                    <!-- Row Style -->
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Background" Value="#262626"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Padding" Value="4"/>
+                            <Setter Property="Height" Value="32"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DataGridRow">
+                                        <Border BorderBrush="#3a3a3a" BorderThickness="0,0,0,1">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="4"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                
+                                                <!-- Left Accent Indicator -->
+                                                <Border x:Name="SelectionAccent"
+                                                        Grid.Column="0"
+                                                        Background="Transparent"
+                                                        Margin="0"/>
+                                                
+                                                <!-- Row Content -->
+                                                <Border x:Name="RowBorder"
+                                                        Grid.Column="1"
+                                                        Background="{TemplateBinding Background}">
+                                                    <DataGridCellsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                                </Border>
+                                            </Grid>
+                                        </Border>
+                                        
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="RowBorder" Property="Background" Value="#2196F3"/>
+                                                <Setter TargetName="SelectionAccent" Property="Background" Value="#ff6b6b"/>
+                                            </Trigger>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="RowBorder" Property="Background" Value="#323232"/>
+                                            </Trigger>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="IsSelected" Value="True"/>
+                                                    <Condition Property="IsMouseOver" Value="True"/>
+                                                </MultiTrigger.Conditions>
+                                                <Setter TargetName="RowBorder" Property="Background" Value="#1976D2"/>
+                                            </MultiTrigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGrid.RowStyle>
+
+                    <!-- Cell Style -->
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Padding" Value="8,4"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DataGridCell">
+                                        <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                                            <ContentPresenter VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGrid.CellStyle>
+
+                    <!-- Column Header Style -->
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#1f1f1f"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Padding" Value="8,4"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="BorderBrush" Value="#3a3a3a"/>
+                            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+
+                </DataGrid>
+            </ScrollViewer>
         </Border>
     </Grid>
 </UserControl>
